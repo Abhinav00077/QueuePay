@@ -69,7 +69,7 @@ A robust payment processing system designed for areas with poor network connecti
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/QueuePay.git
+   git clone https://github.com/Abhinav00077/QueuePay.git
    cd QueuePay
    ```
 
@@ -242,4 +242,4 @@ For support and questions:
 
 ---
 
-**QueuePay** - Making payments work everywhere, even when connectivity doesn't. 
+**QueuePay** - Making payments work everywhere, even when connectivity doesn't.
