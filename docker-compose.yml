@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    environment:
+      - REACT_APP_API_URL=http://localhost:3001
+    networks:
+      - payment-network
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:password@db:5432/offline_payments
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PHONE=${TWILIO_PHONE}
+      - MERCHANT_PHONE=${MERCHANT_PHONE}
+    depends_on:
+      - db
+    networks:
+      - payment-network
+    volumes:
+      - ./server/offline_payments.db:/app/offline_payments.db
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=offline_payments
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - payment-network
+
+networks:
+  payment-network:
+    driver: bridge
+
+volumes:
+  postgres_data: 
