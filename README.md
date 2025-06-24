@@ -210,7 +210,7 @@ Configure nginx with SSL certificates for production use.
 ### Database
 Consider using PostgreSQL for production instead of SQLite for better scalability.
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -222,7 +222,7 @@ Consider using PostgreSQL for production instead of SQLite for better scalabilit
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## Support
 
 For support and questions:
 - Create an issue in the GitHub repository
